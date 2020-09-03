@@ -1,0 +1,44 @@
+﻿@model IEnumerable<RouletteBetting.ViewModels.RouletteViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (Model != null)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RouletteId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RouletteId)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    @Html.ActionLink("Open", "Open", new { id = item.RouletteId }, new {  })   |
+                    @Html.ActionLink("Close", "Bets", new { id = item.RouletteId }, new { })   | 
+                    @Html.ActionLink("Make bet by number", "MakeBetByNumber", new { id = item.RouletteId }, new { }) |
+                    @Html.ActionLink("Make bet by color", "MakeBetByColor", new { id = item.RouletteId }, new {}) |
+                </td>
+            </tr>
+        }
+
+    </table>
+}
